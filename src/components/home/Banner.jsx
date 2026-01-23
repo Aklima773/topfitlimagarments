@@ -13,13 +13,13 @@ import { FaArrowCircleRight, FaCartPlus } from 'react-icons/fa';
        <div className="left-side w-full md:w-1/2 flex-1 flex justify-center">
        <div className="max-w-xl flex flex-col items-start text-left ">
              
-             <p className='text-sm text-info font-semibold tracking-wide mb-8'>FASHIONABLE T-SHIRTS, MADE WITH QUALITY</p> 
-             <h1 className='text-5xl text-accent font-bold italic tracking-wide mb-8'>MAXIMUM COMFORT, <br/> PREMIUM QUALITY.</h1> 
-             <p className='text-sm text-info font-normal tracking-wider mb-8'>Fashionable t-shirts designed for comfort,durability,<br/> and everyday wear</p> 
+             <p className='text-sm text-info font-semibold tracking-wide mb-6'>FASHIONABLE T-SHIRTS, MADE WITH QUALITY</p> 
+             <h1 className='text-3xl md:text-5xl text-accent font-bold italic tracking-wide mb-6'>MAXIMUM COMFORT, <br/> PREMIUM QUALITY.</h1> 
+             <p className='text-sm text-info font-normal tracking-wider mb-6'>Fashionable t-shirts designed for comfort,durability,<br/> and everyday wear</p> 
              
              
              {/* counting button */} 
-             <div className="counting-button flex items-center justify-start gap-6 mb-8"> 
+             <div className="counting-button flex items-center justify-start gap-6 mb-6"> 
                <CounterButton end={12000} label="T-SHIRTS SOLD" /> <CounterButton end={100} label="SATISFACTION %" /> 
              <CounterButton end={8500} label="HAPPY CUSTOMERS" /> 
              
