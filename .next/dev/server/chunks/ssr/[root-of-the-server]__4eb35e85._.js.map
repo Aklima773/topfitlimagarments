@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 17, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 21, "column": 0}, "map": {"version":3,"sources":["file:///Users/toimur/Desktop/Tpfitlimgarments/topfitlimagarments/src/components/home/Products.jsx"],"sourcesContent":["import React from 'react';\n\nconst Products = () => {\n    return (\n        <div>\n            products\n        </div>\n    );\n};\n\nexport default Products;"],"names":[],"mappings":";;;;;AAAA;;;AAEA,MAAM,WAAW;IACb,qBACI,mSAAC;kBAAI;;;;;;AAIb;uCAEe"}},
-    {"offset": {"line": 43, "column": 0}, "map": {"version":3,"sources":["file:///Users/toimur/Desktop/Tpfitlimgarments/topfitlimagarments/src/app/page.js"],"sourcesContent":["import Banner from \"@/components/home/Banner\";\nimport Products from \"@/components/home/Products\";\nimport Image from \"next/image\";\n\nexport default function Home() {\n  return (\n    <div className=\"space-y-80\">\n\n      <section className=\"banner\">\n      <Banner></Banner>\n      </section>\n\n      <section>\n\n        <Products></Products>\n\n      </section>\n\n     \n     \n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;AACA;AACA;;;;;AAEe,SAAS;IACtB,qBACE,mSAAC;QAAI,WAAU;;0BAEb,mSAAC;gBAAQ,WAAU;0BACnB,cAAA,mSAAC,oMAAM;;;;;;;;;;0BAGP,mSAAC;0BAEC,cAAA,mSAAC,sMAAQ;;;;;;;;;;;;;;;;AAQjB"}}]
-}
