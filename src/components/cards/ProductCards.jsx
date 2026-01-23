@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   const {
+    _id,
     title,
-    bangla,
     image,
     price,
     discount,
@@ -21,14 +22,15 @@ const ProductCard = ({ product }) => {
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
       
       {/* Image */}
-      <div className="relative w-full h-56 bg-gray-100">
-        <Image
-        width={200}
-        height={180}
-          src={image}
-          alt={title}
-          className="object-contain p-4"
-        />
+      <div className="w-full h-56 bg-gray-100 flex items-center justify-center overflow-hidden">
+  <Image
+    src={image}
+    alt={title}
+    width={300}
+    height={200}
+    className="object-contain"
+   
+  />
         {discount && (
           <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-2 py-1 rounded">
             {discount}% OFF
@@ -41,7 +43,7 @@ const ProductCard = ({ product }) => {
         <h3 className="text-lg font-bold text-accent leading-snug">
           {title}
         </h3>
-        <p className="text-sm text-gray-500">{bangla}</p>
+    
 
         {/* Rating */}
         <div className="flex items-center gap-1 text-sm">
@@ -51,7 +53,7 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-600 line-clamp-2">
+        <p className="text-sm text-gray-600 line-clamp-1">
           {description}
         </p>
 
@@ -69,12 +71,12 @@ const ProductCard = ({ product }) => {
 
         {/* Buttons */}
         <div className="flex gap-3 pt-2">
-          <button className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold btn btn-primary">
-            View Details
-          </button>
-          <button className="w-1/2 bg-primary text-accent rounded-lg py-2 text-sm font-semibold btn btn-primary">
-            Buy Now
-          </button>
+          
+          <Link href={`/products/${_id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className=""> View Details</button></Link>
+
+    
+          
+          <Link href={`/products/${_id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className="">Add to Cart</button></Link>
         </div>
       </div>
     </div>

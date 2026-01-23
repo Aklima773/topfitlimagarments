@@ -3,6 +3,7 @@ import React from 'react';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import { getProducts } from '@/actions/server/product';
 import ProductCards from '../cards/ProductCards';
+import TypingHeading from '../typingHeading/TypingHeading';
 
 const Products = async() => {
 
@@ -15,7 +16,7 @@ const Products = async() => {
 
                     <div className="left-side space-y-6 ">
 
-                        <h1 className='text-4xl text-left text-accent font-semibold'>FEATURED PRODUCTS</h1>
+                        <TypingHeading textAlign='text-left'>FEATURED PRODUCTS</TypingHeading>
                         <p className='text-sm text-info font-normal tracking-wider'>High-quality garments built to elevate your styleand represent<br/>  your brand with confidence.</p>
 
                     </div>

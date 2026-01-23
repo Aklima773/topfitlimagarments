@@ -10,7 +10,7 @@ export default function Home() {
       <Banner></Banner>
       </section>
 
-      <section>
+      <section className="products">
 
         <Products></Products>
 

@@ -9,7 +9,10 @@ const poppin = Poppins({
 
 
 export const metadata = {
-  title: "Topfit Lima Garments",
+  title: {
+    default:"Topfit Lima Garments",
+    template: "%s | Topfit Lima Garments"
+  },
   description: "Your Look is our concern",
 };
 
