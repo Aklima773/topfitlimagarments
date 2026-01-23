@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menu li,
+.navbar a:not(.btn) {
+  transition: 
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-radius 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.menu li:hover,
+.navbar a:not(.btn):hover {
+  border-radius: 0.85em;
+  background-color: #bced5a !important;
+  color: #000 !important;
+  border-color: transparent !important;
+}
+
+
+.btn:hover {
+  background-color: #232527 !important;
+  color: #bced5a
+}
+
+@plugin "daisyui/theme" {
+  name: "limetheme";
+  
+  /* Brand Colors */
+  --color-primary: #bced5a;
+  --color-primary-content: #000;
+  --color-secondary: #f8fdee;
+  --color-secondary-content: #000;
+  --color-accent: #232527;
+  --color-accent-content: #fff;
+  
+  /* Base */
+  --color-base-100: oklch(99.9% 0 0);
+  --color-base-200: oklch(97% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  
+  /* Neutrals */
+  --color-neutral: oklch(40% 0.02 260);
+  
+  /* Effects */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+}
+
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));  

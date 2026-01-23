@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/toimur/Desktop/Tpfitlimgarments/topfitlimagarments/src/components/buttons/NavLink.jsx"],"sourcesContent":["\"use client\"\nimport Link from 'next/link';\nimport { usePathname } from 'next/navigation';\nimport React from 'react';\n\nconst NavLink = ({href, children}) => {\n\n    const path = usePathname();\n    return <Link className={`${path.startsWith(href) && \"bg-primary\"}`} href={href}>{children}</Link>\n};\n\nexport default NavLink;"],"names":[],"mappings":";;;;;AACA;AACA;AACA;;;AAHA;;;;AAKA,MAAM,UAAU,CAAC,EAAC,IAAI,EAAE,QAAQ,EAAC;;IAE7B,MAAM,OAAO,IAAA,yMAAW;IACxB,qBAAO,kPAAC,+NAAI;QAAC,WAAW,GAAG,KAAK,UAAU,CAAC,SAAS,cAAc;QAAE,MAAM;kBAAO;;;;;;AACrF;GAJM;;QAEW,yMAAW;;;KAFtB;uCAMS"}}]
+}
