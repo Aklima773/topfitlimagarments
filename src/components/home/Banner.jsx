@@ -10,7 +10,7 @@ import { FaArrowCircleRight, FaCartPlus } from 'react-icons/fa';
     return (
          <> 
          <div className='flex flex-col md:flex-row justify-stretch items-center gap-2 '>
-       <div className="left-side w-full md:w-1/2 flex-1 flex justify-center">
+       <div className="left-side w-full md:w-1/2 flex-1 flex justify-center items-center">
        <div className="max-w-xl flex flex-col items-start text-left ">
              
              <p className='text-sm text-info font-semibold tracking-wide mb-6'>FASHIONABLE T-SHIRTS, MADE WITH QUALITY</p> 
@@ -27,7 +27,7 @@ import { FaArrowCircleRight, FaCartPlus } from 'react-icons/fa';
              
               {/* button */}
               
-               <div className="button flex justify-start items-center gap-4 mb-8">
+               <div className="button flex flex-col md:flex-row justify-start md:items-center gap-4 mb-8">
                     <Link href={"/login"}>
                     <button className='btn btn-primary text-xl cursor-pointer'>Order Now <FaCartPlus className="" size={20} />
                     </button>

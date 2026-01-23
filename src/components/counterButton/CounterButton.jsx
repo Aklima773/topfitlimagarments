@@ -21,8 +21,8 @@ const CounterButton = ({ end, duration = 2000, label }) => {
 
   return (
     <div className="text-center flex flex-col items-center justify-center">
-      <p className="text-3xl md:text-4xl font-extrabold text-primary mb-2">{count.toLocaleString()}+</p>
-      <p className="text-sm md:text-[16px] text-accent font-bold">{label}</p>
+      <p className="text-2xl md:text-4xl font-extrabold text-primary mb-2">{count.toLocaleString()}+</p>
+      <p className="text-[12px] md:text-[16px] text-accent font-bold">{label}</p>
     </div>
   );
 };

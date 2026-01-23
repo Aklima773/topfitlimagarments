@@ -1,21 +1,23 @@
-
-
 import { getSingleProducts } from "@/actions/server/product";
+import CartButtons from "@/components/buttons/CartButtons";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
-
-
 export default async function ProductDetails({ params }) {
-  const resolvedParams = await params; // ✅ unwrap the promise
-  const id = resolvedParams.id;
- 
-  const product = await getSingleProducts(id);
-  console.log(product);
+   const resolvedParams = await params; // unwrap the Promise
+  const { id } = resolvedParams;
 
-  if (!product) {
-    return <p>Product not found</p>;
-  }
+
+
+  const product = await getSingleProducts(id);
+
+
+  if (!product) return <p>Product not found</p>;
+
+  const serializedProduct = {
+  ...product,
+  _id: product._id ? product._id.toString() : id,
+};
 
   const discountedPrice = product.discount
     ? Math.round(product.price - (product.price * product.discount) / 100)
@@ -23,10 +25,18 @@ export default async function ProductDetails({ params }) {
 
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-6">
-      
-      {/* Title */}
-      <h1 className="text-3xl font-bold text-accent">{product.title}</h1>
-      <h2 className="text-xl text-gray-500">{product.bangla}</h2>
+      <div className="flex flex-col md:flex-row justify-between md:items-center gap-8">
+        <div className="left-side">
+          <h1 className="text-3xl font-bold text-accent">{product.title}</h1>
+          <h2 className="text-xl text-gray-500">{product.bangla}</h2>
+        </div>
+
+        <div className="right-side">
+          <CartButtons
+            product={serializedProduct}
+          />
+        </div>
+      </div>
 
       {/* Image */}
       <div className="w-full h-80 relative bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">

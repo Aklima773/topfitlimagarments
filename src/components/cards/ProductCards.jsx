@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import CartButtons from "../buttons/CartButtons";
 
 const ProductCard = ({ product }) => {
   const {
@@ -29,6 +30,7 @@ const ProductCard = ({ product }) => {
     width={300}
     height={200}
     className="object-contain"
+   
    
   />
         {discount && (
@@ -76,7 +78,7 @@ const ProductCard = ({ product }) => {
 
     
           
-          <Link href={`/products/${_id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className="">Add to Cart</button></Link>
+         <CartButtons product={product}></CartButtons>
         </div>
       </div>
     </div>

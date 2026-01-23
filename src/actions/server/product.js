@@ -22,5 +22,8 @@ export const getSingleProducts = async(id)=>{
 
     const product = await dbconnect(collections.PRODUCT).findOne(query);
 
-    return product;
+      if (!product) return null;
+
+    return {...product,
+        _id: String(product._id), };
 }
