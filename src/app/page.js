@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="space-y-80">
+    <div className="space-y-60">
 
       <section className="banner">
       <Banner></Banner>

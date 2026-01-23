@@ -1,0 +1,21 @@
+
+"use client";
+import Link from 'next/link';
+import React from 'react';
+import { BiSolidErrorAlt } from "react-icons/bi";
+
+const error = () => {
+    return (
+        <div className='flex flex-col min-h-screen justify-center items-center gap-5'>
+            
+            <BiSolidErrorAlt size={100} className='text-red-600'/>
+
+            <h2 className='text-5xl font-bold text-primary'>Something Went Wrong</h2>
+
+            <Link href={"/"} className="btn btn-primary text-2xl">Go To Home
+            </Link>
+        </div>
+    );
+};
+
+export default error;

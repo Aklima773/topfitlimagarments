@@ -5,7 +5,7 @@ import { MdNoEncryptionGmailerrorred } from "react-icons/md";
 const Error404 = () => {
     return (
         <div className="flex flex-col min-h-screen justify-center items-center space-y-7">
-            <MdNoEncryptionGmailerrorred size={65} className="text-primary" />
+            <MdNoEncryptionGmailerrorred size={100} className="text-red-600" />
 
             <h2 className="text-5xl font-bold text-primary">Page Not Found</h2>
 
