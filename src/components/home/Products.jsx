@@ -7,7 +7,7 @@ import TypingHeading from '../typingHeading/TypingHeading';
 
 const Products = async() => {
 
-    const products = (await getProducts()) || []
+    const products = (await getProducts()) || [];
     return (
         <div>
             <div className="products-content w-11/12 mx-auto space-y-6">

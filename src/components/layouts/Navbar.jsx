@@ -3,6 +3,7 @@ import Logo from './logo/Logo';
 import NavLink from '../buttons/NavLink';
 import Link from 'next/link';
 import { FaCartPlus } from "react-icons/fa";
+import AuthButtons from '../buttons/AuthButtons';
 
 const Navbar = () => {
 
@@ -51,11 +52,7 @@ const Navbar = () => {
   <FaCartPlus className="" size={25} />
 </Link>
 
-          <Link href={"/login"}>
-
-          <button className="btn btn-primary ">Login</button>
-          
-          </Link>
+     <AuthButtons></AuthButtons>
           
         </div>
       </div>

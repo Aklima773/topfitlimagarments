@@ -1,51 +1,95 @@
 "use client";
-
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";  // ✅ MISSING
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
+import SocialButtons from "../api/auth/SocialButtons";
 
 export default function LoginPage() {
+ const searchParams = useSearchParams();
+    const callback  =searchParams.get("callbackUrl") || "/";
+  // const pathname ="products";
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState("");  // ✅ MISSING
+  // const router = useRouter();  // ✅ MISSING
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");  // Clear error on input
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");  // Clear previous errors
+
+    // ✅ FIXED signIn syntax
+    const result = await signIn("credentials", { 
+      email: form.email,
+      password: form.password, 
+      // redirect: false ,
+      callbackUrl: searchParams.get("callbackUrl") || "/"
+    });
+
+    if (!result.ok) {
+      Swal.fire("Invalid email or password")
+      console.log("Login failed:", result.error);
+      
+    }else{
+      Swal.fire("successfully login")
+    }
+
+    // Success - redirect
+    // ✅ Safe navigation
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6 space-y-6">
-        
-        {/* Heading */}
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
           <p className="text-gray-500 mt-1">Login to your account</p>
         </div>
 
-        {/* Google Login Button */}
-        <button
-          type="button"
-          className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-lg py-2.5 hover:bg-gray-100 transition"
-        >
-          <FcGoogle size={22} />
-          <span className="font-medium text-gray-700">
-            Continue with Google
-          </span>
-        </button>
+        {/* Error Message */}
+        {error && (
+          <div className="p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
 
-        {/* Divider */}
+        {/* Google Button */}
+       <SocialButtons></SocialButtons>
+
         <div className="flex items-center gap-3">
           <div className="flex-1 h-px bg-gray-300" />
           <span className="text-gray-400 text-sm">OR</span>
           <div className="flex-1 h-px bg-gray-300" />
         </div>
 
-        {/* Login Form */}
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
+            name="email"
             type="email"
             placeholder="Email address"
+            value={form.email}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            required
           />
-
           <input
+            name="password"
             type="password"
             placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            required
           />
-
           <button
             type="submit"
             className="w-full btn btn-primary bg-primary text-xl text-accent py-2.5 rounded-lg font-semibold hover:opacity-90 transition"
@@ -54,13 +98,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        {/* Footer */}
         <div className="text-center text-sm text-gray-500">
-          Don’t have an account?{" "}
-          <Link
-            href="/register"
-            className="text-primary font-semibold hover:underline"
-          >
+          Dont have an account?{" "}
+          <Link href={`/register?callbackUrl=${callback}`} className="text-primary font-semibold hover:underline">
             Register
           </Link>
         </div>

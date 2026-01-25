@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
+import NextAuthProvider from "@/provider/NextAuthProvider";
 
 const poppin = Poppins({
   weight:["100", "200", "400","500","600","700","800"],
@@ -21,7 +22,7 @@ export const metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  themeColor: '#ff6600',
+ 
 
   openGraph: {
     title: 'TopFit Lima Garments – Premium Garment Solutions',
@@ -58,11 +59,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    
     <html lang="en" data-theme="limetheme">
       <body
         className={`${poppin.className} antialiased bg-secondary`}
       >
 
+<NextAuthProvider>  
+  
         <header className="py-2 md:w-11/12 mx-auto">
           <Navbar></Navbar>
         </header>
@@ -74,6 +78,8 @@ export default function RootLayout({ children }) {
         <footer className="">
           <Footer></Footer>
         </footer>
+        
+        </NextAuthProvider>
       </body>
     </html>
   );

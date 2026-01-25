@@ -5,7 +5,7 @@ import CartButtons from "../buttons/CartButtons";
 
 const ProductCard = ({ product }) => {
   const {
-    _id,
+    id,
     title,
     image,
     price,
@@ -74,7 +74,7 @@ const ProductCard = ({ product }) => {
         {/* Buttons */}
         <div className="flex gap-3 pt-2">
           
-          <Link href={`/products/${_id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className=""> View Details</button></Link>
+          <Link href={`/products/${id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className=""> View Details</button></Link>
 
     
           

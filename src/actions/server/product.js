@@ -7,7 +7,13 @@ import { ObjectId } from "mongodb";
 // calling all product 
 
 export const getProducts =async()=>{
-    const products = await dbconnect(collections.PRODUCT).find().toArray();
+    const allproduct = await dbconnect(collections.PRODUCT).find().toArray();
+
+     const products = allproduct.map(product => ({
+    id: product._id.toString(),  // Convert ObjectId → string
+    ...product, 
+    _id: undefined  // Remove original _id
+  }));
 
     return products;
 }

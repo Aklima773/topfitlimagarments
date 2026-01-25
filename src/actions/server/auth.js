@@ -36,3 +36,23 @@ if(result.acknowledged){
     }
 }
 }
+
+export const loginUser = async (payload) =>{
+
+    const {email, password} =payload;
+    if(!email || !password) return null;
+
+    const user = await dbconnect(collections.USERS).findOne({email});
+
+     if (!user || !await bcrypt.compare(password, user.password)) {
+    return null; // ✅ Triggers 401 (expected)
+  }
+
+    return {
+        id: user._id.toString(),        // ✅ Convert ObjectId → string
+        email: user.email,
+        name: user.name || user.username
+    };
+
+    
+}
