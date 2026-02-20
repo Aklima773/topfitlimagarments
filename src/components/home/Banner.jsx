@@ -28,12 +28,12 @@ import { FaArrowCircleRight, FaCartPlus } from 'react-icons/fa';
               {/* button */}
               
                <div className="button flex flex-col md:flex-row justify-start md:items-center gap-4 mb-8">
-                    <Link href={"/login"}>
+                    <Link href={"/products"}>
                     <button className='btn btn-primary text-xl cursor-pointer'>Order Now <FaCartPlus className="" size={20} />
                     </button>
                     </Link> 
                     
-                    <Link href={"/allproducts"}>
+                    <Link href={"/products"}>
                     <button className='btn btn-primary text-xl cursor-pointer'>Explore Products<FaArrowCircleRight className="" size={20} />
                     </button></Link> 
                     </div> 

@@ -11,8 +11,8 @@ const Logo = () => {
              */}
 
              <div className='flex flex-col justify-center items-center'>
-             <h1 className='font-extrabold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-[#bced5a] to-[#07cc00] [-webkit-text-stroke:1px_#000]'>TopFit</h1>
-             <p className='font-extrabold text-neutral'>Lima Garments</p>
+             <h1 className='font-extrabold text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-[#bced5a] to-[#07cc00] [-webkit-text-stroke:1px_#000]'>TopFit</h1>
+             <p className='font-extrabold text-sm text-neutral'>Lima Garments</p>
              </div>
 
             

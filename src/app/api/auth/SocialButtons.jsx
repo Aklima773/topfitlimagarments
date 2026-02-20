@@ -17,7 +17,7 @@ const SocialButtons = () => {
         const result = await signIn("google",{redirect: "false",
              callbackUrl: searchParams.get("callbackUrl" || "/")});
         console.log(result)
-        if(result.ok){
+        if(result){
             Swal.fire("successfully login")
         }else{
             Swal.fire("login failed")

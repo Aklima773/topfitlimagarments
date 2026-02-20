@@ -8,15 +8,15 @@ import Swal from "sweetalert2";
 import SocialButtons from "../api/auth/SocialButtons";
 
 export default function LoginPage() {
- const searchParams = useSearchParams();
+    const searchParams = useSearchParams();
     const callback  =searchParams.get("callbackUrl") || "/";
-  // const pathname ="products";
+    const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");  // ✅ MISSING
-  // const router = useRouter();  // ✅ MISSING
+  const [error, setError] = useState("");  //
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,24 +27,25 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");  // Clear previous errors
 
-    // ✅ FIXED signIn syntax
+   
+    if(result.acknowledge){
     const result = await signIn("credentials", { 
       email: form.email,
       password: form.password, 
-      // redirect: false ,
+      redirect: false ,
       callbackUrl: searchParams.get("callbackUrl") || "/"
     });
 
     if (!result.ok) {
-      Swal.fire("Invalid email or password")
+      Swal.fire("Invalid email or password . Try Google Login/ Register", "error")
       console.log("Login failed:", result.error);
       
     }else{
-      Swal.fire("successfully login")
+      Swal.fire("successfully login");
+      router.push(callback)
     }
-
-    // Success - redirect
-    // ✅ Safe navigation
+}
+  
   };
 
   return (

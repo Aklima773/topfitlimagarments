@@ -18,6 +18,18 @@ export const getProducts =async()=>{
     return products;
 }
 
+
+// export const getFeaturedProducts =async()=>{
+//     const Featuredproduct = await dbconnect(collections.PRODUCT).find().toArray();
+
+//      const products = Featuredproduct.map(product => ({
+//     id: product._id.toString(),  // Convert ObjectId → string
+//     ...product, 
+//     _id: undefined  // Remove original _id
+//   }));
+
+//     return products;
+// }
 export const getSingleProducts = async(id)=>{
     if (!id || typeof id !== "string" || id.length !== 24) {
         // invalid ID

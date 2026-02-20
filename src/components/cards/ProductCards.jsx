@@ -72,13 +72,18 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-3 pt-2">
+        <div className="flex justify-around items-center gap-6 pt-2 w-full mx-auto">
           
-          <Link href={`/products/${id}`} className="w-1/2 border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className=""> View Details</button></Link>
+          <div className="">
+<Link href={`/products/${id}`} className="border border-primary text-accent rounded-lg py-2 text-sm font-semibold text-sm font-semibold btn btn-primary"><button className=""> View Details</button></Link>
+          </div>
+          
 
     
-          
-         <CartButtons product={product}></CartButtons>
+          <div className="">
+ <CartButtons product={product}></CartButtons>
+          </div>
+        
         </div>
       </div>
     </div>

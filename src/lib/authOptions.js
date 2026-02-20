@@ -15,7 +15,7 @@ export const authOptions = {
         console.log("Credentials received:", credentials); // {email: "...", password: "..."}
 
         if (!credentials?.email || !credentials?.password) {
-          return null; // ✅ Missing credentials
+          return null; 
         }
 
         try {
@@ -24,7 +24,7 @@ export const authOptions = {
             password: credentials.password
           });
 
-          // ✅ CRITICAL: Serialize MongoDB ObjectId
+         
           if (user) {
             return {
               id: user.id.toString(),   // Convert ObjectId → string
@@ -50,8 +50,8 @@ export const authOptions = {
   callbacks:{
     async signIn({user,account,profile,email,credentials}){
 
-const isExits = await dbconnect(collections.USERS).findOne({email:user.email, provider:account.provider});
-
+const isExits = await dbconnect(collections.USERS).findOne({email:user.email});
+// provider:account?.provider,
 
 
 if(isExits){

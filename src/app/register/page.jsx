@@ -65,7 +65,7 @@ export default function RegisterPage() {
           router.push(callbackUrl);  // Back to products page
         } else {
           alert("Registration successful! Please login manually.");
-          router.push("/login");
+          router.push(callbackUrl);
         }
       } else {
         alert("Email already exists!");
