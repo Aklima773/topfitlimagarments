@@ -11,7 +11,9 @@ export const postUser=async(payload)=>{
     if(!email || !password) return null;
     
 //check user
-const isExist = await dbconnect(collections.USERS).findOne({email});
+const connectUser = await dbconnect(collections.USERS);
+const isExist = await connectUser.findOne({email});
+
 if(isExist){
     return null;
 }
@@ -27,7 +29,8 @@ const newUser ={
 }
 
 //insert user
-const result =await dbconnect(collections.USERS).insertOne(newUser);
+const getUser =await dbconnect(collections.USERS);
+const result =await getUser.insertOne(newUser);
 
 if(result.acknowledged){
     return{
@@ -42,7 +45,8 @@ export const loginUser = async (payload) =>{
     const {email, password} =payload;
     if(!email || !password) return null;
 
-    const user = await dbconnect(collections.USERS).findOne({email});
+    const connectsUser = await dbconnect(collections.USERS);
+    const user= await connectsUser.findOne({email});
 
      if (!user || !await bcrypt.compare(password, user.password)) {
     return null; // ✅ Triggers 401 (expected)

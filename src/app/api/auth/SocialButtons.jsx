@@ -10,12 +10,14 @@ import Swal from 'sweetalert2';
 const SocialButtons = () => {
 
     const searchParams = useSearchParams();
-    console.log(searchParams.get("callbackUrl" || "/"))
+     const callbackUrl = searchParams.get('callbackUrl') || '/';
 
     const handleSignIn = async()=>{
 
-        const result = await signIn("google",{redirect: "false",
-             callbackUrl: searchParams.get("callbackUrl" || "/")});
+        const result = await signIn("google",
+            {redirect: "false",
+             callbackUrl: callbackUrl
+            });
         console.log(result)
         if(result){
             Swal.fire("successfully login")

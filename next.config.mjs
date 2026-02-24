@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Tell Next.js to treat these as external (not bundle them)
+  serverExternalPackages: ['mongodb', 'bcryptjs'], 
+
   images: {
     remotePatterns: [
       {
@@ -8,8 +11,9 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    minimumCacheTTL: 0,  // Disable image cache bloat [web:24]
-    formats: ['image/webp'],  // Single format [web:24]
+    unoptimized: true, 
+    minimumCacheTTL: 0,
+    formats: ['image/webp'],
   },
   experimental: {
     turbo: {
@@ -17,9 +21,8 @@ const nextConfig = {
     }
   },
   optimizeFonts: false,
-  compress: true,  // Build-time gzip (default, keep) [web:26]
+  compress: true,
   webpack: (config, { dev, isServer }) => {
-    // Disable webpack cache in prod builds
     if (config.cache && !dev) {
       config.cache = {
         type: 'memory',
@@ -32,7 +35,8 @@ const nextConfig = {
     };
     return config;
   },
-  swcMinify: true,  // Faster minification (default)
+  swcMinify: true,
 };
 
+// Use ES Module export instead of module.exports
 export default nextConfig;

@@ -11,6 +11,8 @@ export const authOptions = {
         email: { label: "Email", type: "email" },     // ✅ REQUIRED
         password: { label: "Password", type: "password" }  // ✅ REQUIRED
       },
+
+
       async authorize(credentials, req) {
         console.log("Credentials received:", credentials); // {email: "...", password: "..."}
 
@@ -25,15 +27,21 @@ export const authOptions = {
           });
 
          
-          if (user) {
-            return {
-              id: user.id.toString(),   // Convert ObjectId → string
-              email: user.email,
-              name: user.name || user.username
-            };
+          if (!user) {
+          return null;
           }
 
-          return null; // ✅ Invalid credentials
+            const db = await dbconnect(collections.USERS);
+          const fullUser = await db.findOne({ email: user.email });
+
+
+               return {
+    id: user._id,
+    email: user.email,
+    name: user.name,
+    role: fullUser?.role || 'user' 
+  };
+   
         } catch (error) {
           console.error("Auth error:", error);
           return null;
@@ -50,7 +58,8 @@ export const authOptions = {
   callbacks:{
     async signIn({user,account,profile,email,credentials}){
 
-const isExits = await dbconnect(collections.USERS).findOne({email:user.email});
+const connectUser = await dbconnect(collections.USERS);
+const isExits =await connectUser.findOne({email:user.email});
 // provider:account?.provider,
 
 
@@ -58,7 +67,7 @@ if(isExits){
 return true;
 }else{
 const newUser ={
-          provide: account?.provider,
+          provider: account?.provider,
           name: user.name,
           email:user.email,
           image: user.image,
@@ -66,7 +75,8 @@ const newUser ={
           role:"user"
       };
 
-      const result = await dbconnect(collections.USERS).insertOne(newUser);
+      const getUser = await dbconnect(collections.USERS);
+      const result =await getUser.insertOne(newUser);
       return result.acknowledged;
 
 }
@@ -79,18 +89,40 @@ const newUser ={
 //   return baseUrl;
 //     },
 
-//     async session({session, token, user}){
-//  return session;
-//     },
 
-//     async jwt({token,user,account,profile,isNewUser}){
-//       return token;
-//     }
+   async jwt({token,user,account,profile,isNewUser}){
+
+    console.log("account data in token", account)
+
+      if(user){
+        if(account.provider == "google")
+        {
+          const dbUser = await dbconnect(collections.USERS);
+          const userData = await dbUser.findOne({
+            email: user.email
+          });
+
+          token.role = userData?.role;
+          token.email=userData?.email;
+        }else{
+        token.role =user?.role;
+        token.email =user?.email;
+        }
+     
+      }
+      return token;
+    },
+
+    async session({session, token, user}){
+
+      if(token){
+        session.user.role = token?.role;
+        session.user.email = token?.email;
+      }
+      return session;
+    },
+
+ 
   },
 
-
-
-  pages: {
-    signIn: "/login"  // Optional: Custom login page
-  }
 };

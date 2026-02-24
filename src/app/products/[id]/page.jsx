@@ -13,11 +13,16 @@ export default async function ProductDetails({ params }) {
 
 
   if (!product) return <p>Product not found</p>;
-
   const serializedProduct = {
-  ...product,
-  _id: product._id ? product._id.toString() : id,
-};
+    id: product._id.toString(),        // ✅ CartButtons needs 'id'
+    _id: product._id.toString(),       // ✅ Keep for MongoDB
+    title: product.title,
+    price: product.price,
+    image: product.image,
+    discount: product.discount || 0,
+    quantity: 1,                       // ✅ Default quantity
+    ...product,                        // ✅ All other fields
+  };
 
   const discountedPrice = product.discount
     ? Math.round(product.price - (product.price * product.discount) / 100)

@@ -1,47 +1,50 @@
 "use server";
 
-import {collections, dbconnect} from "@/lib/dbconnect";
+import { collections, dbconnect } from "@/lib/dbconnect";
 import { ObjectId } from "mongodb";
 
+// 🔹 Get All Products
+export const getProducts = async () => {
+  try {
+    // ✅ FIRST await dbconnect
+    const collection = await dbconnect(collections.PRODUCT);
 
-// calling all product 
+    const allproduct = await collection.find({}).toArray();
 
-export const getProducts =async()=>{
-    const allproduct = await dbconnect(collections.PRODUCT).find().toArray();
-
-     const products = allproduct.map(product => ({
-    id: product._id.toString(),  // Convert ObjectId → string
-    ...product, 
-    _id: undefined  // Remove original _id
-  }));
+    const products = allproduct.map((product) => ({
+      id: product._id.toString(),
+      ...product,
+      _id: undefined, // remove original _id
+    }));
 
     return products;
-}
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
+  }
+};
 
-
-// export const getFeaturedProducts =async()=>{
-//     const Featuredproduct = await dbconnect(collections.PRODUCT).find().toArray();
-
-//      const products = Featuredproduct.map(product => ({
-//     id: product._id.toString(),  // Convert ObjectId → string
-//     ...product, 
-//     _id: undefined  // Remove original _id
-//   }));
-
-//     return products;
-// }
-export const getSingleProducts = async(id)=>{
+// 🔹 Get Single Product
+export const getSingleProducts = async (id) => {
+  try {
     if (!id || typeof id !== "string" || id.length !== 24) {
-        // invalid ID
-        return null;
-      }
+      return null;
+    }
 
-    const query ={_id: new ObjectId(id)};
+    const collection = await dbconnect(collections.PRODUCT);
 
-    const product = await dbconnect(collections.PRODUCT).findOne(query);
+    const product = await collection.findOne({
+      _id: new ObjectId(id),
+    });
 
-      if (!product) return null;
+    if (!product) return null;
 
-    return {...product,
-        _id: String(product._id), };
-}
+    return {
+      ...product,
+      _id: product._id.toString(),
+    };
+  } catch (error) {
+    console.error("Error fetching single product:", error);
+    return null;
+  }
+};

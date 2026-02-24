@@ -81,7 +81,7 @@ const ProductCard = ({ product }) => {
 
     
           <div className="">
- <CartButtons product={product}></CartButtons>
+ <CartButtons product={{...product,id:id.toString()}} ></CartButtons>
           </div>
         
         </div>

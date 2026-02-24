@@ -28,7 +28,7 @@ export default function LoginPage() {
     setError("");  // Clear previous errors
 
    
-    if(result.acknowledge){
+ 
     const result = await signIn("credentials", { 
       email: form.email,
       password: form.password, 
@@ -44,7 +44,7 @@ export default function LoginPage() {
       Swal.fire("successfully login");
       router.push(callback)
     }
-}
+
   
   };
 
